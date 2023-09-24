@@ -15,6 +15,13 @@ sudo chmod +x ./uninstall
 sudo ./uninstall -y
 sleep 15
 
+
+echo "Telegram Install"
+sudo apt install telegram-desktop -y
+
+echo "7Z Install"
+sudo apt install p7zip-full p7zip-rar -y
+
 echo "GO Lang Install"
 cd /tmp
 sudo wget https://go.dev/dl/go1.21.1.linux-amd64.tar.gz 
