@@ -154,7 +154,7 @@ go install github.com/tomnomnom/qsreplace@latest
 sleep 1
 
 echo "Install Amass"
-go install github.com/OWASP/Amass/v3/...@latest
+go install -v github.com/owasp-amass/amass/v4/...@master
 sleep 1
 
 echo "Install ffuf"
