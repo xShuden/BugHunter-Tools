@@ -1,22 +1,55 @@
 #!/usr/bin/env bash
 
+echo "OS Update"
+sudo apt update
+
+echo "Terminator Install"
+sudo apt install terminator -y
+
+echo "Nmap Install"
+sudo apt install nmap -y
+
+echo "GO Lang Install"
+cd /tmp
+sudo wget https://go.dev/dl/go1.21.1.linux-amd64.tar.gz 
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.1.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+go version
+sudo echo "GOPATH=$HOME/go" >> ~/.bashrc
+sudo echo "export GOPATH" >> ~/.bashrc
+sudo echo "PATH=\$PATH:\$GOPATH/bin # Add GOPATH/bin to PATH for scripting" >> ~/.bashrc
+source ~/.bashrc
+
+echo "Pip3 Install"
+sudo apt install python3-pip -y
+
+echo "APKLeaks Install"
+sudo pip3 install apkleaks
+
 # Creating variables
 
-ToolsPath="$HOME/Tools"
+ToolsPath="$HOME/Documents/Tools"
 
 echo "Creating all necessary folders"
 
 mkdir -p ~/.gf
-mkdir -p ~/Tools/
+mkdir -p ~/Documents/Tools/
+mkdir -p ~/Documents/Project/
 mkdir -p ~/.config/notify/
 mkdir -p ~/.config/amass/
 mkdir -p ~/.config/subfinder/
-mkdir -p ~/Lists/
+mkdir -p ~/Documents/Lists/
 
 echo "Download some important files"
-eval wget -nc -O ~/Lists/XSS-OFJAAAH.txt https://raw.githubusercontent.com/danielmiessler/SecLists/master/Fuzzing/XSS/XSS-OFJAAAH.txt
-eval wget -nc -O ~/Lists/params.txt https://raw.githubusercontent.com/s0md3v/Arjun/master/arjun/db/params.txt
-eval wget -nc -O ~/.gf/potential.json https://raw.githubusercontent.com/devanshbatham/ParamSpider/master/gf_profiles/potential.json
+eval wget -nc -O ~/Documents/Lists/XSS-OFJAAAH.txt https://raw.githubusercontent.com/danielmiessler/SecLists/master/Fuzzing/XSS/XSS-OFJAAAH.txt
+
+echo "Install PDTM"
+go install github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+sleep 5
+pdtm
+sudo echo "binary-path: /home/AMBERJACK/8z4i0la949/go/bin" >> /home/AMBERJACK/8z4i0la949/.config/pdtm/config.yaml
+pdtm -ia
+
 
 echo "Install FFF"
 go install github.com/tomnomnom/fff@latest
@@ -70,10 +103,6 @@ echo "Install rush"
 go install github.com/shenwei356/rush@latest
 sleep 1
 
-echo "install naabu"
-go install github.com/projectdiscovery/naabu/cmd/naabu@latest
-sleep 1
-
 echo "Install hakcheckurl"
 go install github.com/hakluke/hakcheckurl@latest
 sleep 1
@@ -92,10 +121,6 @@ sleep 1
 
 echo "Install html-tool"
 go install github.com/tomnomnom/hacks/html-tool@latest
-sleep 1
-
-echo "install Chaos"
-go install github.com/projectdiscovery/chaos-client/cmd/chaos@latest
 sleep 1
 
 echo "Install gf"
@@ -131,16 +156,11 @@ go install github.com/tomnomnom/hacks/waybackurls@latest
 sleep 1
 
 echo "Install nuclei"
-go install github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
 nuclei -update
 sleep 1
 
 echo "Install anew"
 go install github.com/tomnomnom/anew@latest
-sleep 1
-
-echo "Install notify"
-go install github.com/projectdiscovery/notify/cmd/notify@latest
 sleep 1
 
 echo "Install mildew"
@@ -159,20 +179,8 @@ echo "Install shuffledns"
 go install -v github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
 sleep 1
 
-echo "Install httpx"
-go install github.com/projectdiscovery/httpx/cmd/httpx@latest
-sleep 1
-
 echo "Install github-endpoints"
 go install github.com/gwen001/github-endpoints@latest
-sleep 1
-
-echo "Install dnsx"
-go install github.com/projectdiscovery/dnsx/cmd/dnsx@latest
-sleep 1
-
-echo "Install subfinder"
-go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 sleep 1
 
 echo "Install gauplus"
@@ -212,10 +220,6 @@ echo "Install cariddi"
 go install https://github.com/edoardottt/cariddi/@latest
 sleep 1
 
-echo "Install interactsh-client"
-go install github.com/projectdiscovery/interactsh/cmd/interactsh-client@latest
-Sleep 1
-
 echo "Install kxss"
 go install github.com/tomnomnom/hacks/kxss@latest
 sleep 1
@@ -229,31 +233,31 @@ go install github.com/hakluke/hakrevdns@latest
 sleep 1
 
 echo "Install dnsgen"
-pip3 install dnsgen
+sudo pip3 install dnsgen
 sleep 1
 
 echo "Cloning all repos and install"
 
-eval cd $ToolsPath
+cd $ToolsPath
 
 git clone https://github.com/tomnomnom/gf
-eval cd gf
-eval cp -r examples/*.json ~/.gf
+cd gf
+cp -r examples/*.json ~/.gf
 
-eval cd $ToolsPath
+cd $ToolsPath
 git clone https://github.com/1ndianl33t/Gf-Patterns
-eval cd Gf-Patterns
-eval mv *.json ~/.gf
+cd Gf-Patterns
+mv *.json ~/.gf
 
-eval cd $ToolsPath
+cd $ToolsPath
 git clone https://github.com/m4ll0k/SecretFinder
-eval cd SecretFinder
-eval pip3 install -r requirements.txt
+cd SecretFinder
+sudo pip3 install -r requirements.txt
 
-eval cd $ToolsPath
+cd $ToolsPath
 git clone https://github.com/m4ll0k/BBTz
 
-eval cd $ToolsPath
+cd $ToolsPath
 git clone https://github.com/devanshbatham/ParamSpider
-eval cd ParamSpider
-eval pip3 install -r requirements.txt
+cd ParamSpider
+sudo pip3 install -r requirements.txt
