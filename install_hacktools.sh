@@ -9,6 +9,12 @@ sudo apt install terminator -y
 echo "Nmap Install"
 sudo apt install nmap -y
 
+echo "Burpsuite Delete"
+cd /usr/local/BurpSuitePro
+sudo chmod +x ./uninstall
+sudo ./uninstall -y
+sleep 15
+
 echo "GO Lang Install"
 cd /tmp
 sudo wget https://go.dev/dl/go1.21.1.linux-amd64.tar.gz 
