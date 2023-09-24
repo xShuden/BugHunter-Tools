@@ -15,17 +15,26 @@ sudo chmod +x ./uninstall
 sudo ./uninstall -y
 sleep 15
 
-
 echo "Telegram Install"
 sudo apt install telegram-desktop -y
 
 echo "7Z Install"
 sudo apt install p7zip-full p7zip-rar -y
 
+echo "JDK JRE Install"
+sudo apt install openjdk-17-jdk openjdk-17-jre -y
+
+echo "Chrome Install"
+cd /tmp
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo rm google-chrome-stable_current_amd64.deb
+
 echo "GO Lang Install"
 cd /tmp
 sudo wget https://go.dev/dl/go1.21.1.linux-amd64.tar.gz 
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.1.linux-amd64.tar.gz
+sudo rm go1.21.1.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 go version
 sudo echo "GOPATH=$HOME/go" >> ~/.bashrc
