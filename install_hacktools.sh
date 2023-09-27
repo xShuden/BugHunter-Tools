@@ -50,20 +50,23 @@ sudo pip3 install apkleaks
 
 # Creating variables
 
-ToolsPath="$HOME/Documents/Tools"
+ToolsPath="$HOME/Tools"
 
 echo "Creating all necessary folders"
 
 mkdir -p ~/.gf
-mkdir -p ~/Documents/Tools/
-mkdir -p ~/Documents/Project/
+mkdir -p ~/Tools/
+mkdir -p ~/Project/
 mkdir -p ~/.config/notify/
 mkdir -p ~/.config/amass/
 mkdir -p ~/.config/subfinder/
-mkdir -p ~/Documents/Lists/
+mkdir -p ~/Lists/
 
 echo "Download some important files"
-eval wget -nc -O ~/Documents/Lists/XSS-OFJAAAH.txt https://raw.githubusercontent.com/danielmiessler/SecLists/master/Fuzzing/XSS/XSS-OFJAAAH.txt
+wget -nc -O ~/Lists/XSS-OFJAAAH.txt https://raw.githubusercontent.com/danielmiessler/SecLists/master/Fuzzing/XSS/XSS-OFJAAAH.txt
+
+echo "Libcap Install"
+sudo apt install -y libpcap-dev
 
 echo "Install PDTM"
 go install github.com/projectdiscovery/pdtm/cmd/pdtm@latest
@@ -71,7 +74,6 @@ sleep 5
 pdtm
 sudo echo "binary-path: /home/AMBERJACK/8z4i0la949/go/bin" >> /home/AMBERJACK/8z4i0la949/.config/pdtm/config.yaml
 pdtm -ia
-
 
 echo "Install FFF"
 go install github.com/tomnomnom/fff@latest
@@ -123,14 +125,6 @@ sleep 1
 
 echo "Install rush"
 go install github.com/shenwei356/rush@latest
-sleep 1
-
-echo "Install hakcheckurl"
-go install github.com/hakluke/hakcheckurl@latest
-sleep 1
-
-echo "Install shuffledns"
-go install github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
 sleep 1
 
 echo "Install rescope"
@@ -197,10 +191,6 @@ echo "Install unfurl"
 go install github.com/tomnomnom/unfurl@latest
 sleep 1
 
-echo "Install shuffledns"
-go install -v github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
-sleep 1
-
 echo "Install github-endpoints"
 go install github.com/gwen001/github-endpoints@latest
 sleep 1
@@ -227,7 +217,7 @@ go install github.com/jaeles-project/gospider@latest
 sleep 1
 
 echo "Install crobat"
-go install github.com/cgboal/sonarsearch/crobat@latest
+go install github.com/cgboal/sonarsearch/cmd/crobat@latest
 sleep 1
 
 echo "Install dalfox"
@@ -239,7 +229,7 @@ go install github.com/d3mondev/puredns/v2@latest
 sleep 1
 
 echo "Install cariddi"
-go install https://github.com/edoardottt/cariddi/@latest
+go install -v github.com/edoardottt/cariddi/cmd/cariddi@latest
 sleep 1
 
 echo "Install kxss"
@@ -282,4 +272,8 @@ git clone https://github.com/m4ll0k/BBTz
 cd $ToolsPath
 git clone https://github.com/devanshbatham/ParamSpider
 cd ParamSpider
-sudo pip3 install -r requirements.txt
+sudo pip3 install .
+sudo python3 setup.py install
+
+cd $ToolsPath
+git clone https://github.com/danielmiessler/SecLists.git
